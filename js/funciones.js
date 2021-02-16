@@ -1,8 +1,13 @@
 const url = "https://pokeapi.co/api/v2/pokemon/";
-const pokemon_list = document.getElementById("pokemon-list");
+const pokemon_list = document.getElementById("pokemon_list");
 const pokemon_array = [];
+const btn_next = document.getElementById("btn_next");
+const btn_previus = document.getElementById("btn_previus");
+const poke_title = document.getElementById("poke_title");
 //1. FUNCIÓN ASYNC PARA LAS PROMESAS
 const obtenerPokemon = async () => {
+  pokemon_array.length = 0;
+  poke_title.innerText = "Lista Pokemon 1-20";
   //2.SE USÓ TRY PARA LA EJECUCIÓN CORRECTA DE DEL CÓDIGO Y EL CATCH PARA CAPTURAR ALGÚN ERROR
   try {
     //3. SE CREAN CONSTANTES PARA ALMACENAR EL RESULTADO DE LA PROMESAS
@@ -33,6 +38,7 @@ const obtenerPokemon = async () => {
 };
 //LA FUNCIÓN TIENE UN PARAMETRO QUE SERÁ REEMPLZADO POR EL ARRAY ***pokemon_array***
 const mostrarPokemon = (list) => {
+  pokemon_list.innerHTML = "";
   //SE CREA UN LET VACÍO
   let temp = "";
   //SE REALIZA UN RECORRIDO MEDIANTE for of
@@ -46,3 +52,39 @@ const mostrarPokemon = (list) => {
   // SE UTILIZA LA PROPIEDAD innerHTML AL CONTENEDOR DE LISTA PARA AGREGAR LA INFORMACIÓN HTML ALMACENADA EN EL LET ***temp***
   pokemon_list.innerHTML = temp;
 };
+
+const obtenerPokemon2 = async () => {
+  pokemon_array.length = 0;
+  poke_title.innerText = "Lista Pokemon 21-40";
+  let url = "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20";
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    const array = data.results.map((poke) => {
+      let array_nombres = poke.name;
+      pokemon_array.push(array_nombres);
+      return pokemon_array;
+    });
+    console.log(pokemon_array);
+    mostrarPokemon(pokemon_array);
+  } catch (error) {
+    console.log("error");
+  }
+};
+btn_next.onclick = obtenerPokemon2;
+btn_previus.onclick = obtenerPokemon;
+
+// const prueba = async () => {
+//   try {
+//     const url = "https://pokeapi.co/api/v2/pokemon/";
+//     const res = await fetch(url);
+//     const data = await res.json();
+//     const array = data.map((poke) => {
+//       return poke;
+//     });
+//     console.log(array);
+//   } catch (error) {
+//     console.log("error");
+//   }
+// };
+// prueba();
