@@ -1,13 +1,14 @@
-const url = "https://pokeapi.co/api/v2/pokemon/";
+let url = "https://pokeapi.co/api/v2/pokemon/";
 const pokemon_list = document.getElementById("pokemon_list");
 const pokemon_array = [];
-const btn_next = document.getElementById("btn_next");
-const btn_previus = document.getElementById("btn_previus");
-const poke_title = document.getElementById("poke_title");
+const btn_container = document.getElementById("btn_container");
+const btn_next = `<button type="button" onClick="listaSiguiente()" id="btn_next">Next</button>`;
+const btn_previus = `<button type="button" onClick="listaPrevia()" id="btn_previus">Previus</button>`;
+
 //1. FUNCIÓN ASYNC PARA LAS PROMESAS
 const obtenerPokemon = async () => {
+  btn_container.innerHTML = btn_next;
   pokemon_array.length = 0;
-  poke_title.innerText = "Lista Pokemon 1-20";
   //2.SE USÓ TRY PARA LA EJECUCIÓN CORRECTA DE DEL CÓDIGO Y EL CATCH PARA CAPTURAR ALGÚN ERROR
   try {
     //3. SE CREAN CONSTANTES PARA ALMACENAR EL RESULTADO DE LA PROMESAS
@@ -28,7 +29,7 @@ const obtenerPokemon = async () => {
       return pokemon_array;
     });
     //VERIFICAMOS EN CONSOLA LOS VALORES DEL ARRAY
-    console.log(pokemon_array);
+    // console.log(pokemon_array);
     //7. USAMOS LA FUNCIÓN ***mostrarPokemon()** PARA PINTAR LOS VALORES EN LA LISTA
     //TIENE COMO PARÁMETRO EL ARRAY CON LOS VALORES DE LA PROPIEDAD ***name***
     mostrarPokemon(pokemon_array);
@@ -36,6 +37,7 @@ const obtenerPokemon = async () => {
     console.log("error");
   }
 };
+
 //LA FUNCIÓN TIENE UN PARAMETRO QUE SERÁ REEMPLZADO POR EL ARRAY ***pokemon_array***
 const mostrarPokemon = (list) => {
   pokemon_list.innerHTML = "";
@@ -53,38 +55,52 @@ const mostrarPokemon = (list) => {
   pokemon_list.innerHTML = temp;
 };
 
-const obtenerPokemon2 = async () => {
+const listaSiguiente = async () => {
+  btn_container.innerHTML = btn_next + btn_previus;
   pokemon_array.length = 0;
-  poke_title.innerText = "Lista Pokemon 21-40";
-  let url = "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20";
   try {
-    const res = await fetch(url);
-    const data = await res.json();
-    const array = data.results.map((poke) => {
+    let res = await fetch(url);
+    let data = await res.json();
+    url = data.next;
+    let res2 = await fetch(url);
+    let data2 = await res2.json();
+    data2.results.map((poke) => {
       let array_nombres = poke.name;
       pokemon_array.push(array_nombres);
       return pokemon_array;
     });
-    console.log(pokemon_array);
     mostrarPokemon(pokemon_array);
   } catch (error) {
-    console.log("error");
+    console.log("error de la prueba");
   }
 };
-btn_next.onclick = obtenerPokemon2;
-btn_previus.onclick = obtenerPokemon;
+// btn_next.onclick = listaSiguiente();
 
-// const prueba = async () => {
-//   try {
-//     const url = "https://pokeapi.co/api/v2/pokemon/";
-//     const res = await fetch(url);
-//     const data = await res.json();
-//     const array = data.map((poke) => {
-//       return poke;
-//     });
-//     console.log(array);
-//   } catch (error) {
-//     console.log("error");
-//   }
-// };
-// prueba();
+const listaPrevia = async () => {
+  btn_container.innerHTML = btn_next + btn_previus;
+  pokemon_array.length = 0;
+  try {
+    let res = await fetch(url);
+    let data = await res.json();
+    url = data.previous;
+    if (url == null) {
+      borrarBtnPrevio();
+    } else {
+      let res2 = await fetch(url);
+      let data2 = await res2.json();
+      data2.results.map((poke) => {
+        let array_nombres = poke.name;
+        pokemon_array.push(array_nombres);
+        return pokemon_array;
+      });
+      mostrarPokemon(pokemon_array);
+    }
+  } catch (error) {
+    console.log("error de la prueba");
+  }
+};
+
+const borrarBtnPrevio = () => {
+  btn_container.innerHTML = btn_next;
+  url = "https://pokeapi.co/api/v2/pokemon/";
+};
