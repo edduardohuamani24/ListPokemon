@@ -8,7 +8,7 @@ const btn_previus = `<button type="button" onClick="listaPrevia()" id="btn_previ
 //1. FUNCIÓN ASYNC PARA LAS PROMESAS
 const obtenerPokemon = async () => {
   btn_container.innerHTML = btn_next;
-  pokemon_array.length = 0;
+
   //2.SE USÓ TRY PARA LA EJECUCIÓN CORRECTA DE DEL CÓDIGO Y EL CATCH PARA CAPTURAR ALGÚN ERROR
   try {
     //3. SE CREAN CONSTANTES PARA ALMACENAR EL RESULTADO DE LA PROMESAS
@@ -34,7 +34,7 @@ const obtenerPokemon = async () => {
     //TIENE COMO PARÁMETRO EL ARRAY CON LOS VALORES DE LA PROPIEDAD ***name***
     mostrarPokemon(pokemon_array);
   } catch (error) {
-    console.log("error");
+    console.log("error en el botón next");
   }
 };
 
@@ -56,12 +56,55 @@ const mostrarPokemon = (list) => {
 };
 
 const listaSiguiente = async () => {
-  btn_container.innerHTML = btn_next + btn_previus;
-  pokemon_array.length = 0;
+  let url_151 = "https://pokeapi.co/api/v2/pokemon/?offset=140&limit=20";
+  crearBotones();
+  limpiarArray();
   try {
     let res = await fetch(url);
     let data = await res.json();
     url = data.next;
+    if (url === url_151) {
+      url = "https://pokeapi.co/api/v2/pokemon/?offset=140&limit=11";
+      actualizarUrl();
+      borrarBtnNext();
+    } else {
+      actualizarUrl();
+    }
+  } catch (error) {
+    console.log("error en la función principal");
+  }
+};
+
+const listaPrevia = async () => {
+  let url_20 = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20";
+  crearBotones();
+  limpiarArray();
+  try {
+    let res = await fetch(url);
+    let data = await res.json();
+    url = data.previous;
+    corregirBtnPrevious();
+    if (url === url_20) {
+      actualizarUrl();
+      borrarBtnPrevio();
+    } else {
+      actualizarUrl();
+    }
+  } catch (error) {
+    console.log("error de el botón previous");
+  }
+};
+
+const crearBotones = () => {
+  btn_container.innerHTML = btn_next + btn_previus;
+};
+
+const limpiarArray = () => {
+  pokemon_array.length = 0;
+};
+
+const actualizarUrl = async () => {
+  try {
     let res2 = await fetch(url);
     let data2 = await res2.json();
     data2.results.map((poke) => {
@@ -71,36 +114,21 @@ const listaSiguiente = async () => {
     });
     mostrarPokemon(pokemon_array);
   } catch (error) {
-    console.log("error de la prueba");
+    console.log("Error en actualizar URL");
   }
 };
-// btn_next.onclick = listaSiguiente();
 
-const listaPrevia = async () => {
-  btn_container.innerHTML = btn_next + btn_previus;
-  pokemon_array.length = 0;
-  try {
-    let res = await fetch(url);
-    let data = await res.json();
-    url = data.previous;
-    if (url == null) {
-      borrarBtnPrevio();
-    } else {
-      let res2 = await fetch(url);
-      let data2 = await res2.json();
-      data2.results.map((poke) => {
-        let array_nombres = poke.name;
-        pokemon_array.push(array_nombres);
-        return pokemon_array;
-      });
-      mostrarPokemon(pokemon_array);
-    }
-  } catch (error) {
-    console.log("error de la prueba");
-  }
+const borrarBtnNext = () => {
+  btn_container.innerHTML = btn_previus;
 };
 
 const borrarBtnPrevio = () => {
   btn_container.innerHTML = btn_next;
-  url = "https://pokeapi.co/api/v2/pokemon/";
+};
+
+const corregirBtnPrevious = () => {
+  let url_fix = "https://pokeapi.co/api/v2/pokemon/?offset=120&limit=20";
+  if (url === "https://pokeapi.co/api/v2/pokemon/?offset=129&limit=11") {
+    url = url_fix;
+  }
 };
