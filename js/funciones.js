@@ -44,31 +44,40 @@ const mostrarPokemon = (list) => {
   //SE CREA UN LET VACÍO
   let temp = "";
   //SE REALIZA UN RECORRIDO MEDIANTE for of
-  //SE CREA UN ARRAY CON LOS VALORES ***index e item*** para utilizar el meteodo ***entries()*** y obtener indices y valores.
+  //SE CREA UN ARRAY CON LOS VALORES ***index e item*** para utilizar el metodo ***entries()*** y obtener indices y valores.
   //EN FUTURAS ACTUALIZACIONES SE USARÁ LOS INDICES
   for ([index, item] of list.entries()) {
-    //EL LET TEMP SERÁ REEMPLAZADO POR POR SU VALOR SUMANDOLE  UN ELEMENTO DE LISTA QUE TENDRÁ EL NOMBRE DE CADA POKEMON
+    //EL LET TEMP SERÁ REEMPLAZADO  POR SU VALOR SUMANDOLE  UN ELEMENTO DE LISTA QUE TENDRÁ EL NOMBRE DE CADA POKEMON
     //HACEMOS ESTO PARA PINTAR LOS 20 PRIMEROS POKEMON
-    temp = temp + `<li>${item}</li>`;
+    index++;
+    temp = temp + `<li>${index} -${item}</li>`;
   }
   // SE UTILIZA LA PROPIEDAD innerHTML AL CONTENEDOR DE LISTA PARA AGREGAR LA INFORMACIÓN HTML ALMACENADA EN EL LET ***temp***
   pokemon_list.innerHTML = temp;
 };
 
 const listaSiguiente = async () => {
-  let url_151 = "https://pokeapi.co/api/v2/pokemon/?offset=140&limit=20";
+  let url_mistake_151pokemon =
+    "https://pokeapi.co/api/v2/pokemon/?offset=140&limit=20";
+  let url_limit_151pokemon =
+    "https://pokeapi.co/api/v2/pokemon/?offset=140&limit=11";
   crearBotones();
   limpiarArray();
   try {
     let res = await fetch(url);
     let data = await res.json();
     url = data.next;
-    if (url === url_151) {
-      url = "https://pokeapi.co/api/v2/pokemon/?offset=140&limit=11";
-      actualizarUrl();
-      borrarBtnNext();
-    } else {
-      actualizarUrl();
+
+    switch (url) {
+      case url_mistake_151pokemon:
+        url = url_limit_151pokemon;
+        borrarBtnNext();
+        actualizarUrl();
+        break;
+
+      default:
+        actualizarUrl();
+        break;
     }
   } catch (error) {
     console.log("error en la función principal");
@@ -76,19 +85,24 @@ const listaSiguiente = async () => {
 };
 
 const listaPrevia = async () => {
-  let url_20 = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20";
+  let url_first_20pokemon =
+    "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20";
   crearBotones();
   limpiarArray();
   try {
     let res = await fetch(url);
     let data = await res.json();
     url = data.previous;
-    corregirBtnPrevious();
-    if (url === url_20) {
-      actualizarUrl();
-      borrarBtnPrevio();
-    } else {
-      actualizarUrl();
+    fixUrlFinalPreviousClick();
+
+    switch (url) {
+      case url_first_20pokemon:
+        actualizarUrl();
+        borrarBtnPrevio();
+        break;
+      default:
+        actualizarUrl();
+        break;
     }
   } catch (error) {
     console.log("error de el botón previous");
@@ -126,9 +140,10 @@ const borrarBtnPrevio = () => {
   btn_container.innerHTML = btn_next;
 };
 
-const corregirBtnPrevious = () => {
+const fixUrlFinalPreviousClick = () => {
   let url_fix = "https://pokeapi.co/api/v2/pokemon/?offset=120&limit=20";
-  if (url === "https://pokeapi.co/api/v2/pokemon/?offset=129&limit=11") {
+  let url_mistake = "https://pokeapi.co/api/v2/pokemon/?offset=129&limit=11";
+  if (url === url_mistake) {
     url = url_fix;
   }
 };
