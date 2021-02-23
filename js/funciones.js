@@ -3,7 +3,7 @@ const pokemon_list = document.getElementById("pokemon_list");
 const pokemon_array = [];
 const btn_container = document.getElementById("btn_container");
 const btn_next = `<button type="button" onClick="listaSiguiente()" id="btn_next">Next</button>`;
-const btn_previus = `<button type="button" onClick="listaPrevia()" id="btn_previus">Previus</button>`;
+const btn_previus = `<button type="button" onClick="listaPrevia()" id="btn_previus">Previous</button>`;
 
 //1. FUNCIÓN ASYNC PARA LAS PROMESAS
 const obtenerPokemon = async () => {
@@ -17,24 +17,30 @@ const obtenerPokemon = async () => {
     const res = await fetch(url);
     //5. USO DEL MÉTODO json() PARA TRANSFORMA LA API Y PODER UTILIZAR SU INFORMACIÓN
     const data = await res.json();
+
     //6. SE REALIZA UN RECORRIDO MEDIANTE EL MÉTODO MAP PARA OBTENER DATOS DEL API
     //**results** es una propiedad dentro de la API
     // EL PARÁMETRO ***poke** representa el objeto que vamos acceder
     data.results.map((poke) => {
       // LOS VALORES DE LA PROPIEDAD **name** SE ALMACENA DENTRO DE UN LET
       let array_nombres = poke.name;
+
+      //OBTENER VALOR DE LAS IMAGENES
+
       // SE USA UN ARRAY VACIO PARA ALMACENAR LOS VALORES DE LA PROPIEDAD ***name***
       pokemon_array.push(array_nombres);
+      console.log(id);
       //DEVOLVEMOS EL ARRAY CON LOS VALORES
       return pokemon_array;
     });
+
     //VERIFICAMOS EN CONSOLA LOS VALORES DEL ARRAY
     // console.log(pokemon_array);
     //7. USAMOS LA FUNCIÓN ***mostrarPokemon()** PARA PINTAR LOS VALORES EN LA LISTA
     //TIENE COMO PARÁMETRO EL ARRAY CON LOS VALORES DE LA PROPIEDAD ***name***
     mostrarPokemon(pokemon_array);
   } catch (error) {
-    console.log("error en el botón next");
+    console.log("error en la función principal");
   }
 };
 
@@ -50,7 +56,11 @@ const mostrarPokemon = (list) => {
     //EL LET TEMP SERÁ REEMPLAZADO  POR SU VALOR SUMANDOLE  UN ELEMENTO DE LISTA QUE TENDRÁ EL NOMBRE DE CADA POKEMON
     //HACEMOS ESTO PARA PINTAR LOS 20 PRIMEROS POKEMON
     index++;
-    temp = temp + `<li>${index} -${item}</li>`;
+    temp =
+      temp +
+      `<li>${index} -${item}</li>` +
+      `<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+              alt="imagen de un poco" srcset="">`;
   }
   // SE UTILIZA LA PROPIEDAD innerHTML AL CONTENEDOR DE LISTA PARA AGREGAR LA INFORMACIÓN HTML ALMACENADA EN EL LET ***temp***
   pokemon_list.innerHTML = temp;
