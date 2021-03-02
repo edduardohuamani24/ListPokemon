@@ -1,3 +1,3 @@
-import { obtenerPokemon } from "./funciones2.js";
+import { getPokemon } from "./funciones2.js";
 
-obtenerPokemon();
+getPokemon();
