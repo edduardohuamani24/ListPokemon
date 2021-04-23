@@ -32,7 +32,7 @@ export const getPokemondata = () => {
   //El método .then para GUARDAR LAS REPUESTA DENTRO DEL OBJETO results
   Promise.all(poke_array).then((results) => {
     //9. EL OBJETO ***results*** será recorrido mediante unA FUNCIÓN map PARA CREAR UN NUEVO ARRAY
-    //9.1 AL SER UNA FUNCIÓN FLECHA QUE RETORNARÁ UN OBJECT SE ENCIERRA EN PARÉNTESIS. SON LOS CELESTES
+    //9.1 AL SER UNA FUNCIÓN FLECHA QUE RETORNARÁ UN OBJECT SE ENCIERRA EN PARÉNTESIS. SON LOS AMARILLOS
     //9.2  data es la refencia de la respuesta de las llamadas
     const pokemon = results.map((data) => ({
       //10. MEdiante el parámetro DATA SE TRANSFORMA EL OBJETO EN INFORMACIÓN QUE NECESITEMOS
@@ -59,7 +59,7 @@ export const getPokemondata = () => {
 
 //12. LA FUNCIÓN TIENE UN PARAMETRO QUE SERÁ REEMPLAZADO POR EL OBJETO ***pokemon*** QUE CONTIENE LA INFORMACIÓN INDIVIDUAL DE CADA POKEMON
 const showPokemon = (list) => {
-  //SE REALIZA UN RECORRIDO MEADIENTE LA FUNCIÓN ***map*** AL PARAMETRO LIST PARA PINTA LA DATA EN ELEMENTOS HTML
+  //SE REALIZA UN RECORRIDO MEADIENTE LA FUNCIÓN ***map*** AL PARAMETRO LIST PARA PINTAR LA DATA EN ELEMENTOS HTML
   // SE ALMACENA EN UNA CONSTANTE EL RECORRIDO
   const poke_information = list
     .map(
