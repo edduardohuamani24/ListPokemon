@@ -1,3 +1,4 @@
+@import "body.css";
 .pokemon-list {
   display: flex;
   flex-flow: row wrap;
@@ -6,10 +7,6 @@
 
 .pokemon-card {
   list-style: none;
-  padding: 52px;
+  padding: 3.25rem;
   text-align: center;
-}
-
-.button {
-  visibility: hidden;
 }

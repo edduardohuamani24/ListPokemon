@@ -1,5 +1,3 @@
-// import { getPokemon } from "./funciones.js";
-// getPokemon();
 "use strict";
 import { getPokemonData, pokemon_array } from "./getPokemonData.js";
 import { cleanArray } from "./cleanArray.js";
