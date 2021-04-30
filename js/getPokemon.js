@@ -18,6 +18,7 @@ export const getPokemon = async () => {
       const res = await fetch(url);
       const data = await res.json();
       if ((i <= 20) & (click === 0)) {
+        list_subtitle.innerText = "1-20";
         pokemon_array.push(data);
         btn_before.style.visibility = "hidden";
       } else if ((i > 20) & (i <= 40) & (click === 1)) {
