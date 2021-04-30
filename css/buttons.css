@@ -1,8 +1,0 @@
-@import "pokemon_list.css";
-.button {
-  font-size: 1.125rem;
-  visibility: hidden;
-  background-color: var(--color-secundario-claro);
-  color: var(--fondo-oscuro);
-  border: none;
-}

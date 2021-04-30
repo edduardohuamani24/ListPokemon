@@ -1,0 +1,14 @@
+.pokemon-button {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  font-size: 1.25rem;
+  visibility: hidden;
+  background-color: var(--color-secundario-claro);
+  color: var(--color-blanco);
+  border-radius: 1.25rem;
+  font-weight: bold;
+  margin-left: 5px;
+}

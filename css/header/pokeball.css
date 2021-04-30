@@ -1,0 +1,64 @@
+/* Se importa la hoja de estilos del body para obtener los colores guardados en las variables */
+
+@import "../body.css";
+/*Se usó u ntutorial de youtube para crear la pokeball*/
+
+.pokeball {
+  width: 10rem;
+  height: 10rem;
+  background-color: var(--color-blanco);
+  border-radius: 50%;
+  padding: 0;
+  /* se agraga el nombre de la animación creado al final de esta hoja de estilos. La duración de 4s para que dure el giro. El infinite para que no termine. EL alternate se usa para cuando complete el primer giro, regrese y se repita en bucle */
+  animation: pokeRotate 4s infinite alternate;
+}
+
+.pokeball::before {
+  content: '';
+  width: 10rem;
+  height: 5rem;
+  background-color: var(--color-secundario-claro);
+  border-radius: 5rem 5rem 0 0;
+  position: absolute;
+}
+
+.pokeball-detalle {
+  width: 10rem;
+  height: 0.5rem;
+  background-color: var(--fondo-oscuro);
+  margin-top: 4.8rem;
+  position: absolute;
+}
+
+.pokeball-detalle::before {
+  content: "";
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--fondo-oscuro);
+  border-radius: 50%;
+  position: absolute;
+  margin-top: -1.1rem;
+  margin-left: 3.5rem;
+}
+
+.pokeball-detalle::after {
+  content: "";
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color: var(--fondo-oscuro);
+  border-radius: 50%;
+  margin-top: -0.5rem;
+  margin-left: 4.1rem;
+  position: absolute;
+}
+
+/* la animación para hacer girar la pokeball */
+
+@keyframes pokeRotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

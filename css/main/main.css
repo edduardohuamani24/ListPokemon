@@ -1,4 +1,4 @@
-@import "body.css";
+@import "buttons.css";
 .pokemon-list {
   display: flex;
   flex-flow: row wrap;
