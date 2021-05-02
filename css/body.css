@@ -20,3 +20,9 @@ body {
   margin-top: 2.5rem;
   box-sizing: border-box;
 }
+
+@media (max-width:48rem) {
+  body {
+    font-size: 0.75rem;
+  }
+}

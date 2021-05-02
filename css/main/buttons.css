@@ -12,3 +12,15 @@
   font-weight: bold;
   margin-left: 5px;
 }
+
+@media (max-width:48rem) {
+  .pokemon-button {
+    flex-direction: column;
+    margin: auto;
+    width: 50vw;
+  }
+  .button {
+    height: 3.125rem;
+    margin-top: 0.625rem;
+  }
+}

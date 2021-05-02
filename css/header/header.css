@@ -15,3 +15,16 @@ header {
 .pokemon-subtitle {
   margin: -3.75rem 37.5rem 0 7.5rem;
 }
+
+@media (max-width:48rem) {
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+  .pokemon-title {
+    margin: 0 auto;
+  }
+  .pokemon-subtitle {
+    margin: 0 auto;
+  }
+}

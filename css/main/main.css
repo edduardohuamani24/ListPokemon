@@ -8,6 +8,12 @@
 
 .pokemon-card {
   list-style: none;
-  padding: 2.8125rem;
+  padding: 3.125rem;
   text-align: center;
+}
+
+@media (max-width:48rem) {
+  .pokemon-card {
+    padding: 4.0625rem
+  }
 }
