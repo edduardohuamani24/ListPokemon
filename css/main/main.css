@@ -1,12 +1,13 @@
 @import "buttons.css";
+@import "spinner.css";
 .pokemon-list {
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
 .pokemon-card {
   list-style: none;
-  padding: 3.25rem;
+  padding: 2.8125rem;
   text-align: center;
 }

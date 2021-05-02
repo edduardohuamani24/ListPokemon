@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Pokelist_151Pokemon</title>
   <link rel="stylesheet" href="css/header/header.css">
   <link rel="stylesheet" href="css/main/main.css">
   <link rel="stylesheet" href="css/footer/footer.css">
@@ -13,6 +13,7 @@
 </head>
 
 <body>
+
   <header>
 
     <h1 class="pokemon-title">Lista de los 151 pokemon</h1>
@@ -23,12 +24,14 @@
 
   </header>
   <main>
-
-    <div class="pokemon-names">
-      <ul id="pokemon_list" class="pokemon-list">
-
-      </ul>
+    <div id="spinner_container" class="spinner-container">
+      <div id="spinner" class="spinner"></div>
     </div>
+
+    <ul id="pokemon_list" class="pokemon-list">
+
+    </ul>
+
     <div class="pokemon-button" id="btn_container">
       <button type="button" id="btn_next" class="button">Next</button>
       <button type="button" id="btn_before" class="button">Before</button>
@@ -38,8 +41,10 @@
   <footer>
     <h3 class="footer-title"> API address: https://pokeapi.co/api/v2/pokemon </h3>
     <p class="footer-content">Usado para practicar lo aprendido en diseño y desarrollo web Front-end</p>
+
   </footer>
   <script src="js/main.js" type="module"></script>
+  <script src="js/cerrarLoader.js"></script>
 </body>
 
 </html>
