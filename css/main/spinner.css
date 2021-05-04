@@ -16,7 +16,7 @@
   /* //Forma circular */
   border-radius: 50%;
   border-left-color: var(--color-secundario-oscuro);
-  animation: spin 5s linear infinite;
+  animation: spin 4s linear infinite;
 }
 
 @keyframes spin {
@@ -36,4 +36,8 @@
 .abrir-spinner {
   transform: translateY(100%);
   transition: all 0.5s;
+}
+
+.ocultar {
+  display: none;
 }

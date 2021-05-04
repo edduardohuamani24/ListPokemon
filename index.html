@@ -14,7 +14,7 @@
 
 <body>
 
-  <header>
+  <header id="header">
 
     <h1 class="pokemon-title">Lista de los 151 pokemon</h1>
     <div class="pokeball">
@@ -23,10 +23,11 @@
     <h2 class="pokemon-subtitle" id="list_subtitle">1-20</h2>
 
   </header>
-  <main>
-    <div id="spinner_container" class="spinner-container">
-      <div id="spinner" class="spinner"></div>
-    </div>
+  <div id="spinner_container" class="spinner-container">
+    <div id="spinner" class="spinner"></div>
+  </div>
+  <main id="main">
+
 
     <ul id="pokemon_list" class="pokemon-list">
 
@@ -38,13 +39,14 @@
     </div>
 
   </main>
-  <footer>
+  <footer id="footer">
     <h3 class="footer-title"> API address: https://pokeapi.co/api/v2/pokemon </h3>
     <p class="footer-content">Usado para practicar lo aprendido en diseño y desarrollo web Front-end</p>
 
   </footer>
   <script src="js/main.js" type="module"></script>
-  <script src="js/cerrarLoader.js"></script>
+  <script src="js/cerrarLoader.js" type="module"></script>
+  <script src="js/removeElements.js"></script>
 </body>
 
 </html>

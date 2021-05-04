@@ -1,4 +1,9 @@
+"use strict";
+import { showElements } from "./showElements.js";
+
 let spinner_container = document.getElementById("spinner_container");
+
 setTimeout(function () {
   spinner_container.classList.add("cerrar-spinner");
-}, 4000);
+  showElements();
+}, 3000);
