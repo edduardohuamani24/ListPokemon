@@ -1,16 +1,23 @@
 "use strict";
 import { getPokemon } from "./getPokemon.js";
-// import { cerrarSpinner } from "./cerrarLoader.js";
+import { showSpinner } from "./showSpinner.js";
+import { removeSpinner } from "./removeSpinner.js";
 export let click = 0;
 
 export const nextList = () => {
   click++;
   console.log(click);
+  showSpinner();
   getPokemon();
-  // cerrarSpinner();
+  setTimeout(() => {
+    removeSpinner();
+  }, 1000);
 };
 export const beforeList = () => {
   click = click - 1;
+  showSpinner();
   getPokemon();
-  // cerrarSpinner();
+  setTimeout(() => {
+    removeSpinner();
+  }, 1000);
 };
