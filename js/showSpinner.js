@@ -1,3 +1,4 @@
+"use strict";
 import { spinner_container } from "./removeSpinner.js";
 export const showSpinner = () => {
   spinner_container.style.opacity = 1;

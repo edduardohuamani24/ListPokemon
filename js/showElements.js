@@ -1,3 +1,4 @@
+"use strict";
 let header = document.getElementById("header");
 let main = document.getElementById("main");
 let footer = document.getElementById("footer");

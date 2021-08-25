@@ -20,4 +20,5 @@ export const beforeList = () => {
   setTimeout(() => {
     removeSpinner();
   }, 1000);
+  //1 segundo
 };
